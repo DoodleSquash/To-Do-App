@@ -34,15 +34,8 @@ def hello_world():
 def products():
     allTodo = Todo.query.all()
     print(allTodo)
-    return 'this is products page'
+    return 'this is products page'mber = request.form['number']
 
-@app.route('/update/<int:sno>', methods=['GET', 'POST'])
-def update(sno):
-    if request.method=='POST':
-        name = request.form['name']
-        age = request.form['age']
-        number = request.form['number']
-       
         todo = Todo.query.filter_by(sno=sno).first()
         todo.name = name
         todo.age = age
@@ -50,7 +43,7 @@ def update(sno):
         db.session.add(todo)
         db.session.commit()
         return redirect("/")
-        
+
     todo = Todo.query.filter_by(sno=sno).first()
     return render_template('update.html', todo=todo)
 
@@ -63,3 +56,10 @@ def delete(sno):
 
 if __name__ == "__main__":
     app.run(debug=True, port=8000)
+
+@app.route('/update/<int:sno>', methods=['GET', 'POST'])
+def update(sno):
+    if request.method=='POST':
+        name = request.form['name']
+        age = request.form['age']
+        nu
